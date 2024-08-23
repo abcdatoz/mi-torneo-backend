@@ -24,10 +24,13 @@ db.role = require("./roleModel.js")(sequelize, Sequelize);
 db.torneo = require("./torneoModel.js")(sequelize, Sequelize);
 db.grupo = require("./grupoModel.js")(sequelize, Sequelize);
 db.equipo = require("./equipoModel.js")(sequelize, Sequelize);
+db.equipoFoto = require("./equipoFotoModel.js")(sequelize, Sequelize);
+db.equipoEscudo = require("./equipoEscudoModel.js")(sequelize, Sequelize);
 db.jugador = require("./jugadorModel.js")(sequelize, Sequelize);
 db.jornada = require("./jornadaModel.js")(sequelize, Sequelize);
 db.juego = require("./juegoModel.js")(sequelize, Sequelize);
 db.gol = require("./golModel.js")(sequelize, Sequelize);
+
 
 
 db.role.belongsToMany(db.user,{ 

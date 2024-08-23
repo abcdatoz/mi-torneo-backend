@@ -7,9 +7,9 @@ module.exports = (sequelize, Sequelize) => {
             defaultValue: Sequelize.UUIDV4,
             allowNull: false,
             primaryKey: true
-        },        
-        //equipo = models.ForeignKey(Equipo, on_delete=models.SET_NULL, null=True)        
-        imagen:    { type: Sequelize.STRING },              
+        },                
+        imagen:    { type: Sequelize.STRING },  
+        equipoId:  { type: Sequelize.STRING },            
         
       });
     

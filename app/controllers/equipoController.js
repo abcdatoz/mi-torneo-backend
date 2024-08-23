@@ -35,12 +35,11 @@ const getEquiposByTorneo = async (req,res,next) => {
 
 
 const createEquipo = async(req,res,next)=> {
-    const { nombre, nombre_contacto, correo_contacto, telefono_contacto, torneo, grupo }  = req.body
+    const { nombre, nombreContacto, telefonoContacto, torneo, grupo }  = req.body
       
     if( isEmpty(nombre) 
-        || isEmpty(nombre_contacto)        
-        || isEmpty(correo_contacto)        
-        || isEmpty(telefono_contacto)        
+        || isEmpty(nombreContacto)                
+        || isEmpty(telefonoContacto)        
         || isEmpty(torneo)        
         || isEmpty(grupo)        
         ){
@@ -50,9 +49,9 @@ const createEquipo = async(req,res,next)=> {
 
     const result =  await Equipo.create({        
         nombre: nombre,
-        nombre_contacto: nombre_contacto,
-        correo_contacto: correo_contacto,
-        telefono_contacto: telefono_contacto,
+        nombre_contacto: nombreContacto,
+        correo_contacto: "here@and.now",
+        telefono_contacto: telefonoContacto,
         torneoId: torneo,
         grupoId: grupo,
         status: 'alta'
@@ -63,7 +62,7 @@ const createEquipo = async(req,res,next)=> {
 }
 
 const updateEquipo = async(req,res,next)=>{
-    const { nombre, nombre_contacto, correo_contacto, telefono_contacto }  = req.body
+    const { nombre, nombreContacto, telefonoContacto, status }  = req.body
 
     const registro = await Equipo.findByPk(req.params.id).catch(next)
 
@@ -72,9 +71,9 @@ const updateEquipo = async(req,res,next)=>{
           
         const result = await registro.update({            
             nombre: nombre,
-            nombre_contacto: nombre_contacto,
-            correo_contacto: correo_contacto,
-            telefono_contacto: telefono_contacto,
+            nombre_contacto: nombreContacto,            
+            telefono_contacto: telefonoContacto,
+            status: status
         }).catch(next)
 
         return res.status(status.success).send(result)
@@ -103,7 +102,7 @@ const removeEquipo = async(req,res,next)=> {
         })
 
     }else{
-        const result = await Grupo.destroy({
+        const result = await Equipo.destroy({
             where: {
                 id : req.params.id
             }

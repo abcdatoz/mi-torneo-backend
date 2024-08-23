@@ -17,11 +17,11 @@ const db = require("./app/models");
 const Role = db.role;
 
    
-     db.sequelize.sync({force:false})
-      .then(()=>{ 
-          console.log("Drop and Resync Db");        
-          //initial()            
-    });
+    //  db.sequelize.sync({force:false})
+    //   .then(()=>{ 
+    //       console.log("Drop and Resync Db");        
+    //       //initial()            
+    // });
 
 
 
@@ -30,6 +30,8 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, x-access-token");
+
+
     next();   
 });
 
@@ -40,9 +42,13 @@ app.use('/api/resources',express.static(__dirname + '/public/uploads'));
 
 app.get('/',(req,res)=>{ res.json({messsage:'lets play'}) })
 
+require('./app/routes/userRoutes')(app)
+require('./app/routes/authRoutes')(app)
 require('./app/routes/torneoRoute')(app)
 require('./app/routes/grupoRouter')(app)
 require('./app/routes/equipoRouter')(app)
+require('./app/routes/equipoFotoRouter')(app)
+require('./app/routes/equipoEscudoRouter')(app)
 require('./app/routes/jugadorRoute')(app)
 require('./app/routes/jornadaRouter')(app)
 require('./app/routes/juegoRouter')(app)
@@ -56,7 +62,7 @@ app.use( (error, req, res, next) => {
    
 
 
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 8090
 
 app.listen(PORT, ()=>{
     console.log(`Server is running on port ${PORT}`)    
@@ -79,5 +85,6 @@ function initial(){
         name:"admin"
     });
 }
+
 
 

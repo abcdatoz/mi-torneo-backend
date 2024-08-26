@@ -3,8 +3,9 @@ const x = require('../controllers/jornadaController')
 
 
 module.exports = function (app){
-    app.get('/api/jornada/', x.getJornadas)        
-    app.post('/api/jornada/', x.createJornada)        
-    app.delete('/api/jornada/:id', x.removeJornada)
+    app.get('/api/jornadas/', x.getJornadas)        
+    app.post('/api/jornadas/', x.createJornada)        
+    app.put('/api/jornadas/:id', x.updateJornada)
+    app.delete('/api/jornadas/:id', x.removeJornada)
 }
 

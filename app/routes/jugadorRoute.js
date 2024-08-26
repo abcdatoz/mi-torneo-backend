@@ -3,9 +3,9 @@ const x = require('../controllers/jugadorController')
 
 
 module.exports = function (app){
-    app.get('/api/jugador/', x.getJugadores)        
-    app.post('/api/jugador/', x.createJugador)    
-    app.put('/api/jugador/:id', x.updateJugador)
-    app.delete('/api/jugador/:id', x.removeJugador)
+    app.get('/api/jugadores/', x.getJugadores)        
+    app.post('/api/jugadores/', x.createJugador)    
+    app.put('/api/jugadores/:id', x.updateJugador)
+    app.delete('/api/jugadores/:id', x.removeJugador)
 }
 

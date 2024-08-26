@@ -1,6 +1,6 @@
 const db = require('../models')
 const Equipo  = db.equipo
-//const Grupo = db.grupo
+const Jugadores = db.jugador
 
 
 const { isEmpty } = require('../helpers/validations')
@@ -66,7 +66,7 @@ const updateEquipo = async(req,res,next)=>{
 
     const registro = await Equipo.findByPk(req.params.id).catch(next)
 
-
+    console.log(req.body)
     if (registro){
           
         const result = await registro.update({            
@@ -76,16 +76,16 @@ const updateEquipo = async(req,res,next)=>{
             status: status
         }).catch(next)
 
-        return res.status(status.success).send(result)
+        return res.status(200).send(result)
     }else{
-        return res.status(status.nocontent)
+        return res.status(404)
     }
 }
 
  
 const removeEquipo = async(req,res,next)=> {
   
-    const { count, rows } = await Equipo.findAndCountAll({
+    const { count, rows } = await Jugadores.findAndCountAll({
         where: { equipoId: req.params.id},
         offset: 10,
         limit: 2
@@ -98,7 +98,7 @@ const removeEquipo = async(req,res,next)=> {
         
 
         return res.status(status.bad).send({
-            message: "no se puede eliminar porque tiene equipos registrados"
+            message: "no se puede eliminar porque tiene jugadores registrados"
         })
 
     }else{

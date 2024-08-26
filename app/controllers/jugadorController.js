@@ -1,6 +1,6 @@
 const db = require('../models')
 const Jugador = db.jugador
-//const Equipo  = db.equipo
+const Equipo  = db.equipo
 
 
 const { isEmpty } = require('../helpers/validations')

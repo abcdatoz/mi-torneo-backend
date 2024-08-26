@@ -52,7 +52,7 @@ const createJornada = async(req,res,next)=> {
         inicia: inicia,
         termina: termina,
         aviso: aviso,
-        status: 'alta',
+        status: 'Abierta',
         torneoId: torneo
     }).catch(next)
 
@@ -60,7 +60,22 @@ const createJornada = async(req,res,next)=> {
     return res.status(status.success).send(result)
 }
 
+const updateJornada = async(req,res,next)=>{
+    const { status }  = req.body
 
+    const registro = await Jornada.findByPk(req.params.id).catch(next)
+ 
+    if (registro){
+          
+        const result = await registro.update({            
+            status: status
+        }).catch(next)
+
+        return res.status(200).send(result)
+    }else{
+        return res.status(404)
+    }
+}
  
 const removeJornada = async(req,res,next)=> {
   
@@ -77,6 +92,7 @@ const removeJornada = async(req,res,next)=> {
 module.exports = {
     getJornadas: getJornadas,    
     getJornadasByTorneo: getJornadasByTorneo,
-    createJornada: createJornada,    
+    createJornada: createJornada,
+    updateJornada: updateJornada,    
     removeJornada: removeJornada    
 }

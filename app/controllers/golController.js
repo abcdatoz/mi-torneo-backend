@@ -15,11 +15,8 @@ const getGoles = async (req,res,next ) => {
 
 const createGol = async(req,res,next)=> {
     const { goles, tarjetas_amarillas, tarjeta_roja, torneo, juego, equipo, jugador }  = req.body
-      
-    if( isEmpty(goles) 
-        || isEmpty(tarjetas_amarillas)        
-        || isEmpty(tarjeta_roja)        
-        || isEmpty(torneo)        
+      console.log(req.unstable_shouldYield)
+    if(  isEmpty(torneo)        
         || isEmpty(juego)        
         || isEmpty(equipo)        
         || isEmpty(jugador)        
@@ -62,10 +59,22 @@ const updateGol = async(req,res,next)=>{
     }
 }
 
- 
+ const removeGol = async(req,res,next)=> {
+   
+    const result = await Gol.destroy({
+        where: {
+            id : req.params.id
+        }
+    }).catch(next)
+
+
+    return res.status(200).send('El registro ha sido eliminado');  
+
+}
 
 module.exports = {
     getGoles: getGoles,        
     createGol: createGol,
-    updateGol: updateGol
+    updateGol: updateGol,
+    removeGol: removeGol
 }

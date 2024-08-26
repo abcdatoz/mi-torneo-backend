@@ -1,5 +1,6 @@
 const db = require('../models')
 const Juego = db.juego
+const Goles = db.gol
 
 
 
@@ -43,8 +44,6 @@ const createJuego = async(req,res,next)=> {
         || isEmpty(fecha)        
         || isEmpty(hora)        
         || isEmpty(minuto)        
-        || isEmpty(golesA)        
-        || isEmpty(golesB)        
         || isEmpty(status)        
         ){
         errorMessage.error ='Todos los campos son requeridos'
@@ -129,11 +128,42 @@ const updateJuego = async(req,res,next)=>{
     }
 }
 
+const removeJuego = async(req,res,next)=> {
+  
+    const { count, rows } = await Goles.findAndCountAll({
+        where: { juegoId: req.params.id},
+        offset: 10,
+        limit: 2
+      });
+
+    
+
+    if (count > 0 ){
+
+
+        return res.status(status.bad).send({
+            message: "no se puede eliminar porque tiene jugadores registrados"
+        })
+
+    }else{
+        const result = await Juego.destroy({
+            where: {
+                id : req.params.id
+            }
+        }).catch(next)
+
+
+        return res.status(200).send('El registro ha sido eliminado');  
+    }
+}
+
+
 
 
 module.exports = {
     getJuegos: getJuegos,    
     getJuegosByTorneo: getJuegos,
     createJuego: createJuego,
-    updateJuego: updateJuego    
+    updateJuego: updateJuego,
+    removeJuego: removeJuego    
 }

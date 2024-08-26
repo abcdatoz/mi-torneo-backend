@@ -10,7 +10,11 @@ const {status, errorMessage} = require('../helpers/status')
 
 const getJornadas = async (req,res,next ) => {
 
-    const result = await Jornada.findAll({}).catch(next)
+    const result = await Jornada.findAll({
+        order: [
+            ['inicia', 'DESC'],            
+        ]
+    }).catch(next)
   
     return res.status(status.success).send(result)    
 

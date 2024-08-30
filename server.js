@@ -17,11 +17,11 @@ const db = require("./app/models");
 const Role = db.role;
 
    
-    //  db.sequelize.sync({force:false})
-    //   .then(()=>{ 
-    //       console.log("Drop and Resync Db");        
-    //        //initial()            
-    // });
+      db.sequelize.sync({force:false})
+       .then(()=>{ 
+           console.log("Drop and Resync Db");        
+            //initial()            
+     });
 
 
 
@@ -50,6 +50,7 @@ require('./app/routes/equipoRouter')(app)
 require('./app/routes/equipoFotoRouter')(app)
 require('./app/routes/equipoEscudoRouter')(app)
 require('./app/routes/jugadorRoute')(app)
+require('./app/routes/jugadorFotoRouter')(app)
 require('./app/routes/jornadaRouter')(app)
 require('./app/routes/juegoRouter')(app)
 require('./app/routes//golRouter')(app)

@@ -27,6 +27,7 @@ db.equipo = require("./equipoModel.js")(sequelize, Sequelize);
 db.equipoFoto = require("./equipoFotoModel.js")(sequelize, Sequelize);
 db.equipoEscudo = require("./equipoEscudoModel.js")(sequelize, Sequelize);
 db.jugador = require("./jugadorModel.js")(sequelize, Sequelize);
+db.jugadorFoto = require("./jugadorFotoModel.js")(sequelize, Sequelize);
 db.jornada = require("./jornadaModel.js")(sequelize, Sequelize);
 db.juego = require("./juegoModel.js")(sequelize, Sequelize);
 db.gol = require("./golModel.js")(sequelize, Sequelize);

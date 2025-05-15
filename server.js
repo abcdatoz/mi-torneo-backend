@@ -11,7 +11,7 @@ app.use(express.static('public'))
 // app.use(cors(corsOptions))
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost:8070',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'x-access-token']
 }));
@@ -33,13 +33,6 @@ const Role = db.role;
 
 
 
-// app.use(function (req, res, next) {
-//     //Enabling CORS 
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, x-access-token");
-//     next();   
-// });
 
  
 
